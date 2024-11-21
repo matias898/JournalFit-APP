@@ -1,8 +1,8 @@
-// lib/ejercicios.dart
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'bench.dart'; // Importa BenchScreen aquí
+import 'bench.dart'; // Importa BenchScreen
+import 'deadlift.dart'; // Importa DeadliftScreen
+import 'squad.dart'; // Importa SquadScreen
 
 class EjerciciosScreen extends StatelessWidget {
   @override
@@ -86,21 +86,25 @@ class EjerciciosScreen extends StatelessWidget {
                         context,
                         'Deadlift',
                         'lib/assets/deadlift.jpeg',
+                        DeadliftScreen(), // Asigna DeadliftScreen a la tarjeta
                       ),
                       _buildExerciseCard(
                         context,
                         'Bench',
                         'lib/assets/bench.jpeg',
+                        BenchScreen(), // Asigna BenchScreen a la tarjeta
                       ),
                       _buildExerciseCard(
                         context,
                         'Squad',
                         'lib/assets/squad.jpeg',
+                        SquadScreen(), // Asigna SquadScreen a la tarjeta
                       ),
                       _buildExerciseCard(
                         context,
                         'Others...',
                         'lib/assets/others.jpeg',
+                        null, // Puedes asignar una pantalla para otros ejercicios
                       ),
                     ],
                   ),
@@ -113,24 +117,16 @@ class EjerciciosScreen extends StatelessWidget {
     );
   }
 
-  // Función para crear las tarjetas (cards) con imágenes y títulos
-  Widget _buildExerciseCard(BuildContext context, String title, String imagePath) {
+  // Función para crear las tarjetas (cards) con imágenes, títulos y navegación
+  Widget _buildExerciseCard(BuildContext context, String title, String imagePath, Widget? screen) {
     return GestureDetector(
       onTap: () {
-        if (title == 'Bench') {
-          // Si el título es "Bench", navega a BenchScreen
+        if (screen != null) {
+          // Navega a la pantalla específica del ejercicio
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BenchScreen(),
-            ),
-          );
-        } else {
-          // Para otros ejercicios, navega a ExerciseDetailScreen
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ExerciseDetailScreen(title: title),
+              builder: (context) => screen,
             ),
           );
         }
@@ -177,29 +173,6 @@ class EjerciciosScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// Pantalla de detalles del ejercicio
-class ExerciseDetailScreen extends StatelessWidget {
-  final String title;
-
-  const ExerciseDetailScreen({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Colors.red,
-      ),
-      body: Center(
-        child: Text(
-          'Detalles del ejercicio: $title',
-          style: TextStyle(fontSize: 24),
         ),
       ),
     );
