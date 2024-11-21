@@ -104,7 +104,7 @@ class EjerciciosScreen extends StatelessWidget {
                         context,
                         'Others...',
                         'lib/assets/others.jpeg',
-                        null, // Puedes asignar una pantalla para otros ejercicios
+                        null,
                       ),
                     ],
                   ),

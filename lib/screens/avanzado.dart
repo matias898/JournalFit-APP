@@ -1,22 +1,21 @@
+// lib/screens/avanzado.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NovatoScreen extends StatelessWidget {
+class AvanzadoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Fondo negro para resaltar
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.red),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: SingleChildScrollView( // Habilitar scroll si es necesario
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -50,7 +49,7 @@ class NovatoScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.asset(
-                  'lib/assets/novato.jpg', // Ruta actualizada de la imagen
+                  'lib/assets/avanzado.jpg',
                   width: double.infinity,
                   height: 250,
                   fit: BoxFit.cover,
@@ -58,7 +57,7 @@ class NovatoScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'NIVEL NOVATO',
+                'Nivel Avanzado',
                 style: GoogleFonts.kronaOne(
                   color: Colors.white,
                   fontSize: 20,
@@ -67,11 +66,10 @@ class NovatoScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'El nivel Novato es un entrenamiento suave que se enfoca en movilidad y cardio. Técnica básica:',
-                style: TextStyle(color: Colors.white70, fontSize: 14),
+                'Diseñado para atletas experimentados que buscan maximizar su rendimiento físico con entrenamientos intensos.',
+                style: TextStyle(color: Colors.white70, fontSize: 16),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 15),
             ],
           ),
         ),

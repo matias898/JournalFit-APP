@@ -1,6 +1,10 @@
+// lib/screens/mirutina.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'novato.dart';  // Asegúrate de importar el archivo novato.dart
+import 'novato.dart';
+import 'intermedio.dart';
+import 'avanzado.dart';
+import 'personalizado.dart';
 
 class MiRutinaScreen extends StatelessWidget {
   @override
@@ -29,19 +33,14 @@ class MiRutinaScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              // Otros widgets...
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.all(16),
                   children: [
-                    _buildLevelCard(
-                      context,
-                      'NOVATO',
-                      'Entrenamientos suaves\nMovilidad, cardio...',
-                      'lib/assets/novato.jpg',
-                      NovatoScreen(),  // Usar NovatoScreen aquí
-                    ),
-                    // Añadir aquí las tarjetas para los otros niveles
+                    _buildLevelCard(context, 'NOVATO', 'Entrenamientos suaves\nMovilidad, cardio...', 'lib/assets/novato.jpg', NovatoScreen()),
+                    _buildLevelCard(context, 'INTERMEDIO', 'Entrenamientos normales\nCalistenia, HIIT...', 'lib/assets/intermedio.jpg', IntermedioScreen()),
+                    _buildLevelCard(context, 'AVANZADO', 'Entrenamientos intensos\nPesos libres, streetlift...', 'lib/assets/avanzado.jpg', AvanzadoScreen()),
+                    _buildLevelCard(context, 'PERSONALIZADO', 'Tú eres responsable.\nOrganiza a tu gusto.', 'lib/assets/personalizado.jpg', PersonalizadoScreen()),
                   ],
                 ),
               ),
