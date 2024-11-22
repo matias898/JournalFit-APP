@@ -1,10 +1,10 @@
-// lib/ejercicios.dart
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'bench.dart'; // Importa BenchScreen aquí
+import 'bench.dart'; // Importa PantallaBench
+import 'deadlift.dart'; // Importa PantallaPesoMuerto
+import 'squad.dart'; // Importa PantallaSentadilla
 
-class EjerciciosScreen extends StatelessWidget {
+class PantallaEjercicios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +14,7 @@ class EjerciciosScreen extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("lib/assets/gym5.jpg"), // Imagen de fondo
+                image: AssetImage("lib/assets/gym5.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -24,12 +24,12 @@ class EjerciciosScreen extends StatelessWidget {
             children: [
               // AppBar personalizado
               AppBar(
-                backgroundColor: Colors.transparent, // Fondo transparente
+                backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.red),
                   onPressed: () {
-                    Navigator.pop(context); // Regresa a la pantalla anterior
+                    Navigator.pop(context);
                   },
                 ),
               ),
@@ -80,27 +80,31 @@ class EjerciciosScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    childAspectRatio: 1, // Aspecto cuadrado para las cards
+                    childAspectRatio: 1,
                     children: [
-                      _buildExerciseCard(
+                      _construirTarjetaEjercicio(
                         context,
-                        'Deadlift',
+                        'Peso Muerto',
                         'lib/assets/deadlift.jpeg',
+                        PantallaPesoMuerto(),
                       ),
-                      _buildExerciseCard(
+                      _construirTarjetaEjercicio(
                         context,
-                        'Bench',
+                        'Press Banca',
                         'lib/assets/bench.jpeg',
+                        PantallaPressBanca(),
                       ),
-                      _buildExerciseCard(
+                      _construirTarjetaEjercicio(
                         context,
-                        'Squad',
+                        'Sentadilla',
                         'lib/assets/squad.jpeg',
+                        PantallaSentadilla(),
                       ),
-                      _buildExerciseCard(
+                      _construirTarjetaEjercicio(
                         context,
-                        'Others...',
+                        'Otros...',
                         'lib/assets/others.jpeg',
+                        null,
                       ),
                     ],
                   ),
@@ -113,24 +117,15 @@ class EjerciciosScreen extends StatelessWidget {
     );
   }
 
-  // Función para crear las tarjetas (cards) con imágenes y títulos
-  Widget _buildExerciseCard(BuildContext context, String title, String imagePath) {
+  // Función para crear las tarjetas con imágenes, títulos y navegación
+  Widget _construirTarjetaEjercicio(BuildContext context, String titulo, String rutaImagen, Widget? pantalla) {
     return GestureDetector(
       onTap: () {
-        if (title == 'Bench') {
-          // Si el título es "Bench", navega a BenchScreen
+        if (pantalla != null) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BenchScreen(),
-            ),
-          );
-        } else {
-          // Para otros ejercicios, navega a ExerciseDetailScreen
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ExerciseDetailScreen(title: title),
+              builder: (context) => pantalla,
             ),
           );
         }
@@ -147,7 +142,7 @@ class EjerciciosScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: AssetImage(imagePath),
+                  image: AssetImage(rutaImagen),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -166,7 +161,7 @@ class EjerciciosScreen extends StatelessWidget {
                 ),
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  title.toUpperCase(),
+                  titulo.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -177,29 +172,6 @@ class EjerciciosScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// Pantalla de detalles del ejercicio
-class ExerciseDetailScreen extends StatelessWidget {
-  final String title;
-
-  const ExerciseDetailScreen({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Colors.red,
-      ),
-      body: Center(
-        child: Text(
-          'Detalles del ejercicio: $title',
-          style: TextStyle(fontSize: 24),
         ),
       ),
     );

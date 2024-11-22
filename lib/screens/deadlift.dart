@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PantallaPressBanca extends StatelessWidget {
+class PantallaPesoMuerto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class PantallaPressBanca extends StatelessWidget {
           },
         ),
       ),
-      body: SingleChildScrollView( // Habilitar scroll si es necesario
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -50,7 +50,7 @@ class PantallaPressBanca extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.asset(
-                  'lib/assets/bench.jpeg', // Ruta actualizada de la imagen
+                  'lib/assets/deadlift.jpeg',
                   width: double.infinity,
                   height: 250,
                   fit: BoxFit.cover,
@@ -58,7 +58,7 @@ class PantallaPressBanca extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'PRESS BANCA',
+                'PESO MUERTO',
                 style: GoogleFonts.kronaOne(
                   color: Colors.white,
                   fontSize: 20,
@@ -67,7 +67,7 @@ class PantallaPressBanca extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'El press banca es un ejercicio de fuerza que trabaja principalmente el pecho, hombros y tríceps. Técnica básica:',
+                'El peso muerto es un ejercicio fundamental para el desarrollo de la fuerza del tren inferior y la espalda. Técnica básica:',
                 style: TextStyle(color: Colors.white70, fontSize: 14),
                 textAlign: TextAlign.center,
               ),
@@ -78,22 +78,22 @@ class PantallaPressBanca extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '1. Acuéstate en el banco con los pies firmes en el suelo.',
+                      '1. Colócate de pie, con los pies a la anchura de los hombros, frente a la barra.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '2. Sujeta la barra con un agarre ligeramente más ancho que el ancho de los hombros.',
+                      '2. Agáchate y sujeta la barra con las manos a la anchura de los hombros.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '3. Baja la barra de manera controlada hasta que toque ligeramente el pecho.',
+                      '3. Con la espalda recta, levanta la barra hasta quedar completamente erguido.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '4. Empuja explosivamente hacia arriba hasta extender los brazos sin bloquear los codos.',
+                      '4. Baja la barra al suelo de forma controlada.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ],

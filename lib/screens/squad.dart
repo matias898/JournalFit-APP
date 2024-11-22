@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PantallaPressBanca extends StatelessWidget {
+class PantallaSentadilla extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Fondo negro para resaltar
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -16,7 +16,7 @@ class PantallaPressBanca extends StatelessWidget {
           },
         ),
       ),
-      body: SingleChildScrollView( // Habilitar scroll si es necesario
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -50,7 +50,7 @@ class PantallaPressBanca extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Image.asset(
-                  'lib/assets/bench.jpeg', // Ruta actualizada de la imagen
+                  'lib/assets/squad.jpeg',
                   width: double.infinity,
                   height: 250,
                   fit: BoxFit.cover,
@@ -58,7 +58,7 @@ class PantallaPressBanca extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'PRESS BANCA',
+                'SENTADILLA',
                 style: GoogleFonts.kronaOne(
                   color: Colors.white,
                   fontSize: 20,
@@ -67,7 +67,7 @@ class PantallaPressBanca extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'El press banca es un ejercicio de fuerza que trabaja principalmente el pecho, hombros y tríceps. Técnica básica:',
+                'La sentadilla es un ejercicio clave para el desarrollo de los músculos de las piernas y glúteos. Técnica básica:',
                 style: TextStyle(color: Colors.white70, fontSize: 14),
                 textAlign: TextAlign.center,
               ),
@@ -78,22 +78,22 @@ class PantallaPressBanca extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '1. Acuéstate en el banco con los pies firmes en el suelo.',
+                      '1. Párate con los pies a la anchura de los hombros y los pies apuntando ligeramente hacia afuera.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '2. Sujeta la barra con un agarre ligeramente más ancho que el ancho de los hombros.',
+                      '2. Baja el cuerpo doblando las rodillas y manteniendo la espalda recta, como si te sentaras en una silla.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '3. Baja la barra de manera controlada hasta que toque ligeramente el pecho.',
+                      '3. Mantén el peso en los talones y no dejes que las rodillas sobrepasen los pies.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '4. Empuja explosivamente hacia arriba hasta extender los brazos sin bloquear los codos.',
+                      '4. Vuelve a la posición inicial empujando a través de los talones.',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ],
