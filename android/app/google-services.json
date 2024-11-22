@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "270898876210",
-    "project_id": "journalfit-63bac",
-    "storage_bucket": "journalfit-63bac.firebasestorage.app"
+    "project_number": "272162840260",
+    "project_id": "journalfit-661b3",
+    "storage_bucket": "journalfit-661b3.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:270898876210:android:a11edb7872f741e8b6d12b",
+        "mobilesdk_app_id": "1:272162840260:android:504459e43234bc28783391",
         "android_client_info": {
           "package_name": "com.example.journalfit_app_usm"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA-kcf32hii8HfBTW4g7nGsc8xW2VobzGE"
+          "current_key": "AIzaSyBaTuQfwMyFLmV2JmMR1YBGInujMRLq6eA"
         }
       ],
       "services": {

@@ -1,13 +1,24 @@
 // lib/main.dart
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart'; // Importa Firebase Core
+import 'firebase_options.dart'; // Importa las opciones generadas por FlutterFire CLI
 import 'screens/calculadora.dart';
 import 'screens/perfil.dart';
 import 'screens/menuejercicios.dart';
 import 'screens/mirutina.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  // Asegúrate de que los bindings estén inicializados antes de cualquier operación asincrónica
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inicializa Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Ejecuta la aplicación
   runApp(AplicacionJournalFit());
 }
 

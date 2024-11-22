@@ -1,5 +1,1 @@
-{
-  "dataconnect": {
-    "source": "dataconnect"
-  }
-}
+{"dataconnect":{"source":"dataconnect"},"flutter":{"platforms":{"android":{"default":{"projectId":"journalfit-661b3","appId":"1:272162840260:android:504459e43234bc28783391","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"journalfit-661b3","configurations":{"android":"1:272162840260:android:504459e43234bc28783391","ios":"1:272162840260:ios:e608d3a0493a29b8783391"}}}}}}
