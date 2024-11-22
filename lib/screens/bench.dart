@@ -1,9 +1,7 @@
-// lib/screens/bench.dart
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BenchScreen extends StatelessWidget {
+class PantallaPressBanca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +58,7 @@ class BenchScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'PRESS BANCA (BENCH PRESS)',
+                'PRESS BANCA',
                 style: GoogleFonts.kronaOne(
                   color: Colors.white,
                   fontSize: 20,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DeadliftScreen extends StatelessWidget {
+class PantallaPesoMuerto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black, // Fondo negro para resaltar
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -58,7 +58,7 @@ class DeadliftScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'PESO MUERTO (DEADLIFT)',
+                'PESO MUERTO',
                 style: GoogleFonts.kronaOne(
                   color: Colors.white,
                   fontSize: 20,

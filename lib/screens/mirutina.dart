@@ -6,7 +6,7 @@ import 'intermedio.dart';
 import 'avanzado.dart';
 import 'personalizado.dart';
 
-class MiRutinaScreen extends StatelessWidget {
+class PantallaMiRutina extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +37,30 @@ class MiRutinaScreen extends StatelessWidget {
                 child: ListView(
                   padding: EdgeInsets.all(16),
                   children: [
-                    _buildLevelCard(context, 'NOVATO', 'Entrenamientos suaves\nMovilidad, cardio...', 'lib/assets/novato.jpg', NovatoScreen()),
-                    _buildLevelCard(context, 'INTERMEDIO', 'Entrenamientos normales\nCalistenia, HIIT...', 'lib/assets/intermedio.jpg', IntermedioScreen()),
-                    _buildLevelCard(context, 'AVANZADO', 'Entrenamientos intensos\nPesos libres, streetlift...', 'lib/assets/avanzado.jpg', AvanzadoScreen()),
-                    _buildLevelCard(context, 'PERSONALIZADO', 'Tú eres responsable.\nOrganiza a tu gusto.', 'lib/assets/personalizado.jpg', PersonalizadoScreen()),
+                    _construirTarjetaNivel(
+                        context,
+                        'NOVATO',
+                        'Entrenamientos suaves\nMovilidad, cardio...',
+                        'lib/assets/novato.jpg',
+                        NovatoPantalla()),
+                    _construirTarjetaNivel(
+                        context,
+                        'INTERMEDIO',
+                        'Entrenamientos normales\nCalistenia, HIIT...',
+                        'lib/assets/intermedio.jpg',
+                        IntermedioPantalla()),
+                    _construirTarjetaNivel(
+                        context,
+                        'AVANZADO',
+                        'Entrenamientos intensos\nPesos libres, streetlift...',
+                        'lib/assets/avanzado.jpg',
+                        PantallaAvanzado()),
+                    _construirTarjetaNivel(
+                        context,
+                        'PERSONALIZADO',
+                        'Tú eres responsable.\nOrganiza a tu gusto.',
+                        'lib/assets/personalizado.jpg',
+                        PantallaPersonalizado()),
                   ],
                 ),
               ),
@@ -51,12 +71,12 @@ class MiRutinaScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLevelCard(BuildContext context, String title, String description, String imagePath, Widget nextPage) {
+  Widget _construirTarjetaNivel(BuildContext context, String titulo, String descripcion, String rutaImagen, Widget paginaSiguiente) {
     return InkWell(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => nextPage),
+          MaterialPageRoute(builder: (context) => paginaSiguiente),
         );
       },
       child: Padding(
@@ -76,7 +96,7 @@ class MiRutinaScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        title,
+                        titulo,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -85,7 +105,7 @@ class MiRutinaScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        description,
+                        descripcion,
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 20,
@@ -97,7 +117,7 @@ class MiRutinaScreen extends StatelessWidget {
                 SizedBox(width: 10),
                 ClipOval(
                   child: Image.asset(
-                    imagePath,
+                    rutaImagen,
                     width: 180,
                     height: 180,
                     fit: BoxFit.cover,

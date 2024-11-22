@@ -1,8 +1,75 @@
-// lib/screens/intermedio.dart
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class IntermedioScreen extends StatelessWidget {
+class Ejercicio {
+  String nombre;
+  int? repeticiones; // Repeticiones por set para ejercicios de fuerza
+  int? series; // Número de series para ejercicios de fuerza
+  int duracion; // Duración en minutos para ejercicios de tiempo
+  bool completado;
+
+  Timer? temporizador;
+  int tiempoRestante;
+  bool enPausa;
+
+  Ejercicio({
+    required this.nombre,
+    this.repeticiones,
+    this.series,
+    this.duracion = 0,
+    this.completado = false,
+  })  : tiempoRestante = duracion * 60,
+        enPausa = true;
+
+  void iniciarTemporizador(void Function() actualizarEstado) {
+    if (temporizador != null && temporizador!.isActive) return;
+    enPausa = false;
+    temporizador = Timer.periodic(Duration(seconds: 1), (temporizador) {
+      if (tiempoRestante > 0) {
+        tiempoRestante--;
+        actualizarEstado();
+      } else {
+        temporizador.cancel();
+        completado = true;
+        actualizarEstado();
+      }
+    });
+  }
+
+  void pausarTemporizador() {
+    if (temporizador != null && temporizador!.isActive) {
+      temporizador!.cancel();
+      enPausa = true;
+    }
+  }
+
+  String get detalles {
+    if (repeticiones != null && series != null) {
+      return "$repeticiones reps x $series sets";
+    } else {
+      final minutos = (tiempoRestante ~/ 60).toString().padLeft(2, '0');
+      final segundos = (tiempoRestante % 60).toString().padLeft(2, '0');
+      return "$minutos:$segundos";
+    }
+  }
+}
+
+class IntermedioPantalla extends StatefulWidget {
+  @override
+  _IntermedioPantallaState createState() => _IntermedioPantallaState();
+}
+
+class _IntermedioPantallaState extends State<IntermedioPantalla> {
+  final List<Ejercicio> ejerciciosFuerza = [
+    Ejercicio(nombre: "Press de Banca", repeticiones: 10, series: 3),
+  ];
+
+  final List<Ejercicio> ejerciciosCardio = [
+    Ejercicio(nombre: "Trote en Cinta", duracion: 10),
+    Ejercicio(nombre: "Bicicleta ", duracion: 15),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,22 +125,89 @@ class IntermedioScreen extends StatelessWidget {
               SizedBox(height: 20),
               Text(
                 'Nivel Intermedio',
-                style: GoogleFonts.kronaOne(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+                style: GoogleFonts.kronaOne(color: Colors.white, fontSize: 20),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 10),
               Text(
-                'Este nivel está diseñado para deportistas con experiencia moderada buscando intensificar su entrenamiento.',
-                style: TextStyle(color: Colors.white70, fontSize: 16),
+                'Entrenamiento diseñado para deportistas con experiencia moderada buscando intensificar su rutina.',
+                style: TextStyle(color: Colors.white70, fontSize: 14),
                 textAlign: TextAlign.center,
               ),
+              SizedBox(height: 20),
+              Text(
+                "Ejercicio de Fuerza",
+                style: TextStyle(color: Colors.red, fontSize: 18),
+              ),
+              SizedBox(height: 10),
+              ...ejerciciosFuerza.map((ejercicio) => Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: _construirEjercicioFuerza(ejercicio),
+              )),
+              SizedBox(height: 20),
+              Text(
+                "Ejercicios de Cardio",
+                style: TextStyle(color: Colors.red, fontSize: 18),
+              ),
+              SizedBox(height: 10),
+              ...ejerciciosCardio.map((ejercicio) => Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: _construirEjercicioCardio(ejercicio),
+              )),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _construirEjercicioFuerza(Ejercicio ejercicio) {
+    return ListTile(
+      title: Text(ejercicio.nombre, style: TextStyle(color: Colors.white)),
+      subtitle: Text(ejercicio.detalles, style: TextStyle(color: Colors.white70)),
+      trailing: IconButton(
+        icon: Icon(
+          ejercicio.completado ? Icons.check_circle : Icons.check_circle_outline,
+          color: Colors.green,
+        ),
+        onPressed: () {
+          setState(() {
+            ejercicio.completado = true;
+          });
+        },
+      ),
+      tileColor: Colors.grey[800],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      dense: true,
+    );
+  }
+
+  Widget _construirEjercicioCardio(Ejercicio ejercicio) {
+    return ListTile(
+      title: Text(ejercicio.nombre, style: TextStyle(color: Colors.white)),
+      subtitle: Text(ejercicio.detalles, style: TextStyle(color: Colors.white70)),
+      trailing: OutlinedButton(
+        onPressed: () {
+          setState(() {
+            if (ejercicio.enPausa) {
+              ejercicio.iniciarTemporizador(() {
+                setState(() {});
+              });
+            } else {
+              ejercicio.pausarTemporizador();
+            }
+          });
+        },
+        child: Text(
+          ejercicio.enPausa ? "Iniciar" : "Pausar",
+          style: TextStyle(color: Colors.red),
+        ),
+      ),
+      tileColor: Colors.grey[800],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      dense: true,
     );
   }
 }

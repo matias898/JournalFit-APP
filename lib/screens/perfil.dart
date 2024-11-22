@@ -1,22 +1,16 @@
-// lib/perfil.dart
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PerfilScreen extends StatefulWidget {
+class PantallaPerfil extends StatefulWidget {
   @override
-  _PerfilScreenState createState() => _PerfilScreenState();
+  _EstadoPantallaPerfil createState() => _EstadoPantallaPerfil();
 }
 
-class _PerfilScreenState extends State<PerfilScreen> {
-  final TextEditingController _nombreController =
-  TextEditingController(text: "");
-  final TextEditingController _edadController =
-  TextEditingController(text: "");
-  final TextEditingController _alturaController =
-  TextEditingController(text: "");
-  final TextEditingController _pesoController =
-  TextEditingController(text: "");
+class _EstadoPantallaPerfil extends State<PantallaPerfil> {
+  final TextEditingController _controladorNombre = TextEditingController(text: "");
+  final TextEditingController _controladorEdad = TextEditingController(text: "");
+  final TextEditingController _controladorAltura = TextEditingController(text: "");
+  final TextEditingController _controladorPeso = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +21,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("lib/assets/gym4.jpg"), // Imagen de fondo
+                image: AssetImage("lib/assets/gym4.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -36,12 +30,12 @@ class _PerfilScreenState extends State<PerfilScreen> {
           Column(
             children: [
               AppBar(
-                backgroundColor: Colors.transparent, // Fondo transparente
+                backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.red),
                   onPressed: () {
-                    Navigator.pop(context); // Regresa a la pantalla anterior (menu)
+                    Navigator.pop(context); // Regresa a la pantalla anterior (menú)
                   },
                 ),
               ),
@@ -78,23 +72,23 @@ class _PerfilScreenState extends State<PerfilScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    // Imagen de perfil (puedes cambiarla a una imagen real si quieres)
+                    // Imagen de perfil
                     CircleAvatar(
                       radius: 50,
                       backgroundImage: AssetImage('assets/avatar_placeholder.png'),
                     ),
                     SizedBox(height: 20),
-                    _buildTextField('Nombre', _nombreController),
+                    _construirCampoTexto('Nombre', _controladorNombre),
                     SizedBox(height: 20),
-                    _buildTextField('Edad', _edadController, keyboardType: TextInputType.number),
+                    _construirCampoTexto('Edad', _controladorEdad, keyboardType: TextInputType.number),
                     SizedBox(height: 20),
-                    _buildTextField('Altura', _alturaController, keyboardType: TextInputType.number),
+                    _construirCampoTexto('Altura', _controladorAltura, keyboardType: TextInputType.number),
                     SizedBox(height: 20),
-                    _buildTextField('Peso', _pesoController, keyboardType: TextInputType.number),
+                    _construirCampoTexto('Peso', _controladorPeso, keyboardType: TextInputType.number),
                     SizedBox(height: 30),
                     ElevatedButton(
                       onPressed: () {
-                        // Acción al presionar guardar (puedes implementar el guardado de datos aquí)
+                        // Acción al presionar guardar
                       },
                       child: Text('Guardar'),
                       style: ElevatedButton.styleFrom(
@@ -116,14 +110,14 @@ class _PerfilScreenState extends State<PerfilScreen> {
   }
 
   // Función para construir los TextFields personalizados
-  Widget _buildTextField(String label, TextEditingController controller,
+  Widget _construirCampoTexto(String etiqueta, TextEditingController controlador,
       {TextInputType keyboardType = TextInputType.text}) {
     return TextField(
-      controller: controller,
+      controller: controlador,
       keyboardType: keyboardType,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        labelText: label,
+        labelText: etiqueta,
         labelStyle: TextStyle(color: Colors.white),
         filled: true,
         fillColor: Colors.grey[800]?.withOpacity(0.7),

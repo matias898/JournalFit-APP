@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SquadScreen extends StatelessWidget {
+class PantallaSentadilla extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +58,7 @@ class SquadScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Text(
-                'SENTADILLA (SQUAT)',
+                'SENTADILLA',
                 style: GoogleFonts.kronaOne(
                   color: Colors.white,
                   fontSize: 20,

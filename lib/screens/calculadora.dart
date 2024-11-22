@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class CalculadoraScreen extends StatefulWidget {
+class PantallaCalculadora extends StatefulWidget {
   @override
-  _CalculadoraScreenState createState() => _CalculadoraScreenState();
+  _EstadoPantallaCalculadora createState() => _EstadoPantallaCalculadora();
 }
 
-class _CalculadoraScreenState extends State<CalculadoraScreen> {
-  final TextEditingController _pesoController = TextEditingController();
-  final TextEditingController _repsController = TextEditingController();
-  double _repeticionMaxima = 0;
+class _EstadoPantallaCalculadora extends State<PantallaCalculadora> {
+  final TextEditingController _controladorPeso = TextEditingController();
+  final TextEditingController _controladorRepeticiones = TextEditingController();
+  double _repeticionMaximaCalculada = 0;
 
-  void _calcularMaxima() {
-    double peso = double.tryParse(_pesoController.text) ?? 0;
-    int reps = int.tryParse(_repsController.text) ?? 0;
+  void _calcularRepeticionMaxima() {
+    double peso = double.tryParse(_controladorPeso.text) ?? 0;
+    int repeticiones = int.tryParse(_controladorRepeticiones.text) ?? 0;
 
-    if (reps > 0 && reps <= 10) {
-      _repeticionMaxima = peso / (1.0278 - 0.0278 * reps);
+    if (repeticiones > 0 && repeticiones <= 10) {
+      _repeticionMaximaCalculada = peso / (1.0278 - 0.0278 * repeticiones);
     } else {
-      _repeticionMaxima = 0;
+      _repeticionMaximaCalculada = 0;
     }
 
     setState(() {});
@@ -32,10 +32,13 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context); // Navega hacia atrás
+            Navigator.pop(context);
           },
         ),
-        title: Text('Calculadora Fuerza Máxima', style: TextStyle(color: Colors.white)),
+        title: Text(
+          'Calculadora Fuerza Máxima',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Stack(
         children: [
@@ -65,7 +68,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    controller: _pesoController,
+                    controller: _controladorPeso,
                     keyboardType: TextInputType.number,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -80,7 +83,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    controller: _repsController,
+                    controller: _controladorRepeticiones,
                     keyboardType: TextInputType.number,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -95,7 +98,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: _calcularMaxima,
+                    onPressed: _calcularRepeticionMaxima,
                     child: Text('Calcular'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
@@ -104,21 +107,21 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
                   SizedBox(height: 40),
                   Center(
                     child: Text(
-                      'Repetición Máxima: ${_repeticionMaxima.toStringAsFixed(0)} kg',
+                      'Repetición Máxima: ${_repeticionMaximaCalculada.toStringAsFixed(0)} kg',
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
                   ),
                   SizedBox(height: 20),
-                  _buildPercentageRow(95, 0.95),
-                  _buildPercentageRow(90, 0.90),
-                  _buildPercentageRow(85, 0.85),
-                  _buildPercentageRow(80, 0.80),
-                  _buildPercentageRow(75, 0.75),
-                  _buildPercentageRow(70, 0.70),
-                  _buildPercentageRow(65, 0.65),
-                  _buildPercentageRow(60, 0.60),
-                  _buildPercentageRow(55, 0.55),
-                  _buildPercentageRow(50, 0.50),
+                  _construirFilaPorcentaje(95, 0.95),
+                  _construirFilaPorcentaje(90, 0.90),
+                  _construirFilaPorcentaje(85, 0.85),
+                  _construirFilaPorcentaje(80, 0.80),
+                  _construirFilaPorcentaje(75, 0.75),
+                  _construirFilaPorcentaje(70, 0.70),
+                  _construirFilaPorcentaje(65, 0.65),
+                  _construirFilaPorcentaje(60, 0.60),
+                  _construirFilaPorcentaje(55, 0.55),
+                  _construirFilaPorcentaje(50, 0.50),
                 ],
               ),
             ),
@@ -128,18 +131,18 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
     );
   }
 
-  Widget _buildPercentageRow(int percentage, double multiplier) {
+  Widget _construirFilaPorcentaje(int porcentaje, double multiplicador) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '$percentage%:',
+            '$porcentaje%:',
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           Text(
-            '${(_repeticionMaxima * multiplier).toStringAsFixed(0)} kg',
+            '${(_repeticionMaximaCalculada * multiplicador).toStringAsFixed(0)} kg',
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
         ],
